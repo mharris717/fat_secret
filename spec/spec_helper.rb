@@ -15,12 +15,16 @@ Spork.prefork do
     config.fail_fast = false
   end
 
+  raise "no key" unless ENV['FS_CONSUMER_KEY'].present?
+
   module FatSecret
     CONSUMER_KEY = ENV['FS_CONSUMER_KEY']
     SECRET_KEY = ENV['FS_SECRET_KEY']
     ACCESS_TOKEN = ENV['FS_ACCESS_TOKEN']
     ACCESS_SECRET = ENV['FS_ACCESS_SECRET']
   end
+
+  HttpApi.test_mode = true
 end
 
 Spork.each_run do
