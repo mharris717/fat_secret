@@ -25,7 +25,8 @@ class HttpApi
       list = []
       list << {"exercise_name" => "Exercise Walking", 'exercise_id' => '58'}
       list << {'exercise_name' => 'Resting', 'exercise_id' => '2'}
-      69.times do
+      list << {'exercise_name' => 'Running - 6/mph', 'exercise_id' => '9'}
+      68.times do
         list << {}
       end
 

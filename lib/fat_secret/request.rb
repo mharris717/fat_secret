@@ -16,6 +16,7 @@ module FatSecret
     end
     fattr(:full_params) do
       res = params_no_token
+      #raise "no access token" unless api.access_token.present?
       res = res.merge(:oauth_token => api.access_token)# if use_access_token?
       res
     end
@@ -36,6 +37,7 @@ module FatSecret
     end
 
     fattr(:signature) do
+      #raise "no secret key" unless api.secret_key.present?
       secret_token = "#{api.secret_key}&#{use_access_token? ? api.access_secret.andand.esc : nil}"
       Base64.encode64(OpenSSL::HMAC.digest(API.digest, secret_token, base_string)).gsub(/\n/, '').esc 
     end

@@ -122,7 +122,9 @@ module FatSecret
     end
 
     def get_exercise_id(name)
-      get_exercises.find { |x| x['exercise_name'] == name }['exercise_id'].andand.to_i
+      res = get_exercises.find { |x| x['exercise_name'] == name }
+      raise "no exercise found for #{name}" unless res
+      res['exercise_id'].andand.to_i
     end
 
     def log_exercise(name,ops)

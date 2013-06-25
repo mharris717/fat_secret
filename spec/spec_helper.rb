@@ -15,7 +15,7 @@ Spork.prefork do
     config.fail_fast = false
   end
 
-  raise "no key" unless ENV['FS_CONSUMER_KEY'].present?
+  #raise "no key" unless ENV['FS_CONSUMER_KEY'].present?
 
   module FatSecret
     CONSUMER_KEY = ENV['FS_CONSUMER_KEY']
