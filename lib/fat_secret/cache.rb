@@ -14,7 +14,7 @@ module FatSecret
     def get_inner(*args,&b)
       k = args.join("-")
       exist = redis.get(k)
-      if exist
+      if exist && !error_return?(exist)
         #puts "exists #{exist.inspect}END"
         exist
       elsif block_given?
@@ -31,6 +31,17 @@ module FatSecret
       res = get_inner(*args,&b)
       #puts "get class #{res.class}"
       res
+    end
+
+    def error_return?(str)
+      if str.blank?
+        false
+      else
+        res = JSON.parse(str)
+        res && res['error']
+      end
+    rescue => exp
+      return false
     end
   end
 end

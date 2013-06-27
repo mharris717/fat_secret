@@ -69,6 +69,7 @@ module FatSecret
 
         parent.send(:define_method,name) do |*args|
           res = send("#{this.name}_raw",*args)
+          raise "error returned from fatsecret 1: #{res['error'].inspect}" if res && res['error']
           res = this.process[res] if this.process
           res 
         end

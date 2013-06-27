@@ -40,7 +40,9 @@ module FatSecret
     end
 
     def get(*args)
-      request(:get,*args)
+      res = request(:get,*args)
+      raise "error returned from fatsecret 2: #{res['error'].inspect}" if res && res['error']
+      res
     end
     def get_cached(*args)
       raise 'get_cached'
