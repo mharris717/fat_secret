@@ -42,7 +42,6 @@ describe "FatSecret" do
     #pp res
 
     res['food_entries']['food_entry'].size.should == 6
-    #raise 'foo'
   end
 
   it 'food_entry.create' do
